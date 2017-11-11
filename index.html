@@ -11,23 +11,173 @@
 
     <script>
        
-    // scope of this:
-    // getarea works within object, however when we import it from object, this.radius will NOT work
-       const circle = {
-            radius: 10,
-            color: 'orange',
-            getArea: function () {
-                return Math.PI * this.radius * this.radius;
-            },
-            getCircumference: function () {
-                return 2 * Math.PI * this.radius;
-            }
-        };
+    // // scope of this:
+    // // getarea works within object, however when we import it from object, this.radius will NOT work
+    //        const circle = {
+    //             radius: 10,
+    //             color: 'orange',
+    //             getArea: function () {
+    //                 return Math.PI * this.radius * this.radius;
+    //             },
+    //             getCircumference: function () {
+    //                 return 2 * Math.PI * this.radius;
+    //             }
+    //         };
 
-        let { radius, getArea, getCircumference } = circle;
-        console.log(getArea());
+    //         let { radius, getArea, getCircumference } = circle;
+    //         console.log(getArea());
+
+    
+    // // LOOPS //
+    
+    // // for...in (are discouraged when looping over arrays.) //
+
+    //     Array.prototype.decimalfy = function () {
+    //             for (let i = 0; i < this.length; i++) {
+    //                 this[i] = this[i].toFixed(2);
+    //             }
+    //         };
+
+    //     const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    //     for (const index in digits) {
+    //         console.log(digits[index]);
+    //     }
+    //     //     Prints:
+    //     //     0
+    //     //     ...
+    //     //     9
+    //     //     function() {
+    //     //          for (let i = 0; i < this.length; i++) {
+    //     //               this[i] = this[i].toFixed(2);
+    //     //          }
+    //     //     }
+
+    //     // change firts letter to Capital
+    //     const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    //     for (let index in days) {
+    //         console.log(days[index].charAt(0).toUpperCase() + days[index].substr(1));
+    //     }
+
+
+    // // ForEach loop is another type of for loop in JavaScript. 
+    // // However, forEach() is actually an array method, so it can only be used exclusively 
+    // // with arrays. There is also no way to stop or break a forEach loop. 
+    // // If you need that type of behavior in your loop, you’ll have to use a basic for loop.
+
+    // // for...of (newest form ES6) //
+    //     const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    //         for (const digit of digits) {
+    //             console.log(digit);
+    //     }
+    //     // It’s good practice to use plural names for objects that are collections of values. That way, when you loop over the collection, you can use the singular version of the name when referencing individual values in the collection. For example, for (const button of buttons) {...}.   
         
+    //     // You can stop or break a for...of loop at anytime.
 
+    //         const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    //         for (const digit of digits) {
+    //             if (digit % 2 === 0) {
+    //                 continue;
+    //             }
+    //             console.log(digit);
+    //         }
+    //         // Prints:
+    //         // 1
+    //         // 3
+    //         // 5
+    //         // 7
+    //         // 9
+
+    //     // change firts letter to Capital
+    //         const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    //         for (let day of days) {
+    //                 console.log(day.charAt(0).toUpperCase() + day.substr(1));
+    //         }
+
+    // // ///////////////////////////////// Spread operator ////////////////////////////////////////////
+    //         const books = ["Don Quixote", "The Hobbit", "Alice in Wonderland", "Tale of Two Cities"];
+    //             console.log(...books);
+    //         // Prints: Don Quixote The Hobbit Alice in Wonderland Tale of Two Cities
+            
+    //         const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);
+    //             console.log(...primes);
+    //         // Prints: 2 3 5 7 11 13 17 19 23 29 
+
+    //         // concating arrays with Spread... operator
+    //         const fruits = ["apples", "bananas", "pears"];
+    //         const vegetables = ["corn", "potatoes", "carrots"];
+    //         const produce = [...fruits, ...vegetables];
+    //         console.log(produce); // [ 'apples', 'bananas', 'pears', 'corn', 'potatoes', 'carrots' ]
+
+    // ///////////////////////////////////// Rest parameter //////////////////////////////////////////////
+    //         const order = [20.17, 18.67, 1.50, "cheese", "eggs", "milk", "bread"];
+    //         const [total, subtotal, tax, ...items] = order;
+    //         console.log(total, subtotal, tax, items);
+    //         // Prints: 20.17 18.67 1.5 ["cheese", "eggs", "milk", "bread"]
+    
+
+            // function toPrint(...params) {
+            //     console.log(params); // this will result in Array
+            //     console.log(...params); // this will result with list
+            // }
+
+            // function toPrint(...params) {
+            //     for (let param of params){
+            //         console.log(param);
+            //     }
+            // }
+
+            // toPrint("apple", "salat", "milk", "Adam", "Lila");
+
+            // const arrayToPrint = ["apple", "salat", "milk", "Adam", "Lila"];
+            // const [first, second, ...rest] = arrayToPrint;
+            // console.log("first: ", first);
+            // console.log("second: ", second);
+            // console.log("rest: ", ...rest);
+
+
+    // If we look at the implementation of our sum() function, then you’ll see how the arguments object could be used to handle the variable amount of numbers being passed to it.
+
+        // function sum() {
+        //     let total = 0;
+        //     for (const argument of arguments) {
+        //         total += argument;
+        //     }
+        //     return total;
+        // }
+        // Now this works fine, but it does have its issues:
+
+        // If you look at the definition for the sum() function, it doesn’t have any parameters.
+        // This is misleading because we know the sum() function can handle an indefinite amount of arguments.
+        // It can be hard to understand.
+        // If you’ve never used the arguments object before, then you would most likely look at this code and wonder where the arguments object is even coming from.Did it appear out of thin air? It certainly looks that way.
+        // Using the rest parameter
+        // Fortunately, with the addition of the rest parameter, you can rewrite the sum() function to read more clearly.
+
+
+        function sum(...nums) {
+            let total = 0;
+            for (const num of nums) {
+                total += num;
+            }
+            console.log(total);
+        }
+
+        sum(2,4);
+
+
+        // average: 
+        function average(...numbers) {
+                if (numbers.length === 0) return 0;
+                let total = 0;
+                for (let number of numbers) {
+                    total += number;
+                }
+                return (total / numbers.length);
+        }
+                       
         
     </script>
     
