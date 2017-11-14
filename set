@@ -1,0 +1,22 @@
+const games = new Set();
+console.log(games);  //Set {}
+--
+
+const games = new Set(['Super Mario Bros.', 'Banjo-Kazooie', 'Mario Kart', 'Super Mario Bros.']);
+console.log(games);  //Set {'Super Mario Bros.', 'Banjo-Kazooie', 'Mario Kart'}
+--
+
+Methods: 
+.add(), .delete(), clear()
+
+const games = new Set(['Super Mario Bros.', 'Banjo-Kazooie', 'Mario Kart', 'Super Mario Bros.']);
+games.add('Banjo-Tooie');
+games.add('Age of Empires');
+games.delete('Super Mario Bros.');
+console.log(games) //Set {'Banjo-Kazooie', 'Mario Kart', 'Banjo-Tooie', 'Age of Empires'}
+
+.size
+const months = new Set(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
+console.log(months.size); //12
+
+ 
