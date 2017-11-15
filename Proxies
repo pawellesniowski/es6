@@ -1,0 +1,22 @@
+To create a proxy object, we use the Proxy constructor - new Proxy();. The proxy constructor takes two items:
+
+the object that it will be the proxy for
+an object containing the list of methods it will handle for the proxied object
+The second object is called the handler.
+
+The simplest way to create a proxy is to provide an object and then an empty handler object.
+var richard = {status: 'looking for work'};
+var agent = new Proxy(richard, {});
+agent.status; // returns 'looking for work'
+
+-- 
+get 
+const richard = {status: 'looking for work'};
+const handler = {
+    get(target, propName) {
+        console.log(target); // the `richard` object, not `handler` and not `agent`
+        console.log(propName); // the name of the property the proxy (`agent` in this case) is checking
+    }
+};
+const agent = new Proxy(richard, handler);
+agent.status; // logs out the richard object (not the agent object!) and the name of the property being accessed (`status`)
