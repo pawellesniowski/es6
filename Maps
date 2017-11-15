@@ -24,8 +24,48 @@ employees.set('james.parkes@udacity.com', {
  //TIP: If you .set() a key-value pair to a Map that already uses the same key, you won’t receive an error, but the key-value pair will overwrite what currently exists in the Map. Also, if you try to .delete() a key-value that is not in a Map, you won’t receive an error, and the Map will remain unchanged.
  // The .delete() method returns true if a key-value pair is successfully deleted from the Map object, and false if unsuccessful. The return value of .set() is the Map object itself if successful.
 
+-- 
+.has() // to check if something is in the Map
+const members = new Map();
+members.set('Sophia', 0);
+members.set('Marcus', 10.25);
+console.log(members.has('Xavier')); // false
+console.log(members.has('Marcus')); // true
+
+-- 
+.get() // returns value
+console.log(members.get('Marcus')); // 10.25
 
 
+--
+looping through Map
+ 1. Step through each key or value using the Map’s default iterator
+ 2. Loop through each key-value pair using the new for...of loop
+ 3. Loop through each key-value pair using the Map’s .forEach() method
+
+1.: .k
+Using both the .keys() and .values() methods on a Map will return a new iterator object called MapIterator. You can store that iterator object in a new variable and use .next() to loop through each key or value. Depending on which method you use, will determine if your iterator has access to the Map’s keys or the Map’s values.
+let iteratorObjForKeys = members.keys();
+iteratorObjForKeys.next(); // Object {value: 'Xavier', done: false}
+iteratorObjForKeys.next(); // Object {value: 'Marcus', done: false}
+
+On the flipside, use the .values() method to access the Map’s values, and then repeat the same process.
+let iteratorObjForValues = members.values();
+iteratorObjForValues.next();
+Object {value: 75.68, done: false}
+
+2. 2. Using a for...of Loop
+Your second option for looping through a Map is with a for...of loop.
+
+for (const member of members) {
+  console.log(member);
+}
+ ['Evelyn', 75.68]
+ ['Liam', 20.16]
+ ['Sophia', 0]
+ ['Marcus', 10.25]
+ 
+  // However, when you use a for...of loop with a Map, you don’t exactly get back a key or a value. Instead, the key-value pair is split up into an array where the first element is the key and the second element is the value. If only there were a way to fix this?
 
 
 
