@@ -43,7 +43,7 @@ looping through Map
  2. Loop through each key-value pair using the new for...of loop
  3. Loop through each key-value pair using the Map’s .forEach() method
 
-1.: .k
+1. Using .keys()
 Using both the .keys() and .values() methods on a Map will return a new iterator object called MapIterator. You can store that iterator object in a new variable and use .next() to loop through each key or value. Depending on which method you use, will determine if your iterator has access to the Map’s keys or the Map’s values.
 let iteratorObjForKeys = members.keys();
 iteratorObjForKeys.next(); // Object {value: 'Xavier', done: false}
@@ -54,7 +54,7 @@ let iteratorObjForValues = members.values();
 iteratorObjForValues.next();
 Object {value: 75.68, done: false}
 
-2. 2. Using a for...of Loop
+2. Using a for...of Loop
 Your second option for looping through a Map is with a for...of loop.
 
 for (const member of members) {
@@ -65,7 +65,45 @@ for (const member of members) {
  ['Sophia', 0]
  ['Marcus', 10.25]
  
-  // However, when you use a for...of loop with a Map, you don’t exactly get back a key or a value. Instead, the key-value pair is split up into an array where the first element is the key and the second element is the value. If only there were a way to fix this?
+  // However, when you use a for...of loop with a Map, you don’t exactly get back a key or a value. 
+  // Instead, the key-value pair is split up into an array where the first element is the key and the second element is the value. 
+  // Way to fix this:
+
+for (const member of members) {
+    const [first, last] = member;
+    console.log(first: last); // returns pairs
+    console.log({first: last}); // returns objects
+}
+
+3. forEach
+members.forEach((key,value)=>console.log(key, value));
+
+--
+WeakMap - you can add only objects.
+    A WeakMap is just like a normal Map with a few key differences:
+    a WeakMap can only contain objects as keys,
+    a WeakMap is not iterable which means it can’t be looped and
+    a WeakMap does not have a .clear() method.
+    
+    
+You can create a WeakMap just like you would a normal Map, except that you use the WeakMap constructor.
+
+const book1 = { title: 'Pride and Prejudice', author: 'Jane Austen' };
+const book2 = { title: 'The Catcher in the Rye', author: 'J.D. Salinger' };
+const book3 = { title: 'Gulliver’s Travels', author: 'Jonathan Swift' };
+
+const library = new WeakMap();
+library.set(book1, true);
+library.set(book2, false);
+library.set(book3, true);
+
+console.log(library); // WeakMap {
+ // Object {title: 'Pride and Prejudice', author: 'Jane Austen'} => true, 
+ // Object {title: 'The Catcher in the Rye', author: 'J.D. Salinger'} => false, 
+ // Object {title: 'Gulliver’s Travels', author: 'Jonathan Swift'} => true}
+
+
+
 
 
 
