@@ -22,7 +22,13 @@ Problems with callbacks:
   };
 
 
-2. Promises
-  const sequence = get("example.json")
-  .then(doSomething)
-  .then(doSomethingElse);
+2. Stages of promises:
+ 1.Fullfiled/Resolved
+ 2.Rejected
+ 3.Pending
+ 4.Settled (something happend)
+ 
+3. document.readyStage, has three possible states: 
+  loading, 
+  interactive(loaded and parsed, but some of parts likie images and style sheets have yet to load), 
+  complete
