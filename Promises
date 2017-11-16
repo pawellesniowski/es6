@@ -1,1 +1,28 @@
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+1. Intro:
+Callbacks are default javascript technique fro dealing with asinchronous work.
+Pass a function to another function and then call it later, when some condition have been met.
+Problems with callbacks:
+ - error handling (it is best to proctise, to assume that something at some point may go wrong. ).
+ - what if this callback is also an asynchronous operation and you neet something else to happen afterwards, 
+  do you pass another function with another callback here? 
+  // Piramid of doom // hard to debug.
+  loadImage("fold.img", imgContainer, function(){
+    loadImage("below-fold.jpg", imgContainer2, function(){
+      loadImage("last-one.jpg", imgContainerN)
+    });
+  });
+  
+  function loadImage(src, paren, callback){
+    var img = document.createElement("img");
+    img.src = src;
+    img.onload = callback;
+    parent.appendChild(img);  
+  };
+
+
+2. Promises
+  const sequence = get("example.json")
+  .then(doSomething)
+  .then(doSomethingElse);
